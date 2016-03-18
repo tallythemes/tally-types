@@ -93,6 +93,18 @@ function tallytypes_mb_field_text($arg){
 }
 
 
+/*	Color
+--------------------------------------*/
+function tallytypes_mb_field_color($arg){
+	extract(array_merge( tallytypes_mb_field_default_arguments(), $arg ));
+	if($name == ''){ $name = $id; }
+	
+	tallytypes_mb_field_before($id, $title, $class);
+		echo '<input type="text" name="'.$name.'" id="'.$id.'" value="'.tallytypes_mb_field_sanitize($sanitize, $value).' " class="tt_color">';	
+	tallytypes_mb_field_after($des);
+}
+
+
 /*	Select
 --------------------------------------*/
 function tallytypes_mb_field_select($arg){
@@ -354,6 +366,8 @@ class tallytypes_metabox{
 					tallytypes_mb_field_image_upload($field);
 				}elseif($field['type'] == 'group'){
 					tallytypes_mb_field_group($field);
+				}elseif($field['type'] == 'color'){
+					tallytypes_mb_field_color($field);
 				}
 			}
 		}

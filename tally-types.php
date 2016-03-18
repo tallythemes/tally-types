@@ -44,6 +44,7 @@ define( 'TALLYTYPES_ENABLE_CAROUSEL', apply_filters('tallytypes_enable_carousel'
 define( 'TALLYTYPES_ENABLE_SERVICES', apply_filters('tallytypes_enable_services', true) );
 define( 'TALLYTYPES_ENABLE_TESTIMONIALS', apply_filters('tallytypes_enable_testimonials', true) );
 define( 'TALLYTYPES_ENABLE_VCARD', apply_filters('tallytypes_enable_vcard', true) );
+define( 'TALLYTYPES_ENABLE_GRID', apply_filters('tallytypes_enable_grid', true) );
 
 include('includes/metabox-helper.php');
 include('includes/script-loader.php');
@@ -55,6 +56,7 @@ $tallytypes_is_carousel = (isset($tallytypes_options['carousel'])) ? $tallytypes
 $tallytypes_is_services = (isset($tallytypes_options['services'])) ? $tallytypes_options['services'] : TALLYTYPES_ENABLE_SERVICES;
 $tallytypes_is_testimonials = (isset($tallytypes_options['testimonials'])) ? $tallytypes_options['testimonials'] : TALLYTYPES_ENABLE_TESTIMONIALS;
 $tallytypes_is_vcard = (isset($tallytypes_options['vcard'])) ? $tallytypes_options['vcard'] : TALLYTYPES_ENABLE_VCARD;
+$tallytypes_is_grid = (isset($tallytypes_options['grid'])) ? $tallytypes_options['grid'] : TALLYTYPES_ENABLE_GRID;
 
 if($tallytypes_is_carousel == true){
 	include('types/carousel.php');
@@ -67,4 +69,7 @@ if($tallytypes_is_testimonials == true){
 }
 if($tallytypes_is_vcard == true){
 	include('types/vcard.php');
+}
+if($tallytypes_is_grid == true){
+	include('types/grid.php');
 }

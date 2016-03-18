@@ -5,6 +5,8 @@
 **/
 
 jQuery(document).ready(function($){				
+	 $( '.tt_color').wpColorPicker();
+	 
 	//$('.tt-upload-btn').click(function(e) {
 	$('body').on('click', '.tt-upload-btn' ,function(e) {
 		e.preventDefault();
