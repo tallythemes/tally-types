@@ -168,12 +168,31 @@ $mb_fields[] = array(
 );
 $mb_fields[] = array(
 	'id' => 'column_margin_tt',
-	'type' => 'text',
+	'type' => 'select',
 	'title' => 'Column Margin',
 	'des' => '',
 	'class' => '',
 	'value' => '',
 	'sanitize' => 'wp_kses',
+	'choices' => array(
+		array('title' => '0 px', 'value' => '0'),
+		array('title' => '1 px', 'value' => '1'),
+		array('title' => '2 px', 'value' => '2'),
+		array('title' => '3 px', 'value' => '3'),
+		array('title' => '4 px', 'value' => '4'),
+		array('title' => '5 px', 'value' => '5'),
+		array('title' => '6 px', 'value' => '6'),
+		array('title' => '7 px', 'value' => '7'),
+		array('title' => '8 px', 'value' => '8'),
+		array('title' => '9 px', 'value' => '9'),
+		array('title' => '10 px', 'value' => '10'),
+		array('title' => '15 px', 'value' => '15'),
+		array('title' => '20 px', 'value' => '20'),
+		array('title' => '25 px', 'value' => '25'),
+		array('title' => '30 px', 'value' => '30'),
+		array('title' => '35 px', 'value' => '35'),
+		array('title' => '40 px', 'value' => '40'),
+	),
 );
 $mb_fields[] = array(
 	'id' => 'enable_masonry_tt',
