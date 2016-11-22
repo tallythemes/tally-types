@@ -36,7 +36,7 @@ function tallytypes_register_postType__testimonials() {
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => 101,
-		'menu_icon'			 => TALLYTYPES_URL.'assets/images/testimonials-icon.png',
+		'menu_icon'			 => TALLYTYPES_URL.'assets/images/testimonials-icon.svg',
 		'supports'           => array( 'title', 'thumbnail' )
 	);
 

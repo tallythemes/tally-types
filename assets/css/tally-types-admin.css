@@ -3,6 +3,18 @@
  *
  * Admin CSS Style of the plugin
 **/
+ 
+#toplevel_page_tally-types .wp-menu-image img,
+#menu-posts-tt_slider .wp-menu-image img,
+#menu-posts-tt_vcard .wp-menu-image img,
+#menu-posts-tt_testimonial .wp-menu-image img,
+#menu-posts-tt_grid .wp-menu-image img,
+#menu-posts-tt_service .wp-menu-image img,
+#menu-posts-tt_carousel .wp-menu-image img{
+	opacity:1;
+}
+
+
 .tallytypes_mb_field {
 	margin-bottom:20px;
 	padding-bottom:20px;

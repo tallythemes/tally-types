@@ -6,7 +6,7 @@
 Plugin Name: Tally Types
 Plugin URI: http://tallythemes.com/
 Description: Provide Custom Post Types and Metaboxes
-Version: 1.0
+Version: 2.0
 Author: TallyThemes
 Author URI: http://tallythemes.com/
 License: GPLv2 or later
@@ -45,6 +45,7 @@ define( 'TALLYTYPES_ENABLE_SERVICES', apply_filters('tallytypes_enable_services'
 define( 'TALLYTYPES_ENABLE_TESTIMONIALS', apply_filters('tallytypes_enable_testimonials', true) );
 define( 'TALLYTYPES_ENABLE_VCARD', apply_filters('tallytypes_enable_vcard', true) );
 define( 'TALLYTYPES_ENABLE_GRID', apply_filters('tallytypes_enable_grid', true) );
+define( 'TALLYTYPES_ENABLE_SLIDER', apply_filters('tallytypes_enable_slider', true) );
 
 include('includes/metabox-helper.php');
 include('includes/script-loader.php');
@@ -57,6 +58,7 @@ $tallytypes_is_services = (isset($tallytypes_options['services'])) ? $tallytypes
 $tallytypes_is_testimonials = (isset($tallytypes_options['testimonials'])) ? $tallytypes_options['testimonials'] : TALLYTYPES_ENABLE_TESTIMONIALS;
 $tallytypes_is_vcard = (isset($tallytypes_options['vcard'])) ? $tallytypes_options['vcard'] : TALLYTYPES_ENABLE_VCARD;
 $tallytypes_is_grid = (isset($tallytypes_options['grid'])) ? $tallytypes_options['grid'] : TALLYTYPES_ENABLE_GRID;
+$tallytypes_is_slider = (isset($tallytypes_options['slider'])) ? $tallytypes_options['slider'] : TALLYTYPES_ENABLE_SLIDER;
 
 if($tallytypes_is_carousel == true){
 	include('types/carousel.php');
@@ -72,4 +74,7 @@ if($tallytypes_is_vcard == true){
 }
 if($tallytypes_is_grid == true){
 	include('types/grid.php');
+}
+if($tallytypes_is_slider == true){
+	include('types/slider.php');
 }

@@ -48,6 +48,7 @@ function tallytypes_settings_api_init(  ) {
 	add_settings_field( 'testimonials', 'Enabal Testimonial', 'tallytypes_field_render_3', 'tallytypes', 'tallytypes_pluginPage_section');
 	add_settings_field( 'vcard', 'Enabal vCard','tallytypes_field_render_4', 'tallytypes', 'tallytypes_pluginPage_section');
 	add_settings_field( 'grid', 'Enabal Grid','tallytypes_field_render_5', 'tallytypes', 'tallytypes_pluginPage_section');
+	add_settings_field( 'Slider', 'Enabal Slider','tallytypes_field_render_6', 'tallytypes', 'tallytypes_pluginPage_section');
 }
 
 
@@ -105,6 +106,16 @@ function tallytypes_field_render_5(){
 	$id = 'grid';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
 	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_GRID;
+	$value = ($value == false) ? 0 : $value;
+	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
+		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
+		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+	echo '</select>';
+}
+function tallytypes_field_render_6(){ 
+	$id = 'slider';
+	$options = get_option( TALLYTYPES_OPTION_NAME );
+	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_SLIDER;
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';

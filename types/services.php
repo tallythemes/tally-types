@@ -36,7 +36,7 @@ function tallytypes_register_postType__service() {
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => 101,
-		'menu_icon'			 => TALLYTYPES_URL.'assets/images/services-icon.png',
+		'menu_icon'			 => TALLYTYPES_URL.'assets/images/services-icon.svg',
 		'supports'           => array( 'title', 'editor', 'thumbnail' )
 	);
 	register_post_type( 'tt_service', $args );

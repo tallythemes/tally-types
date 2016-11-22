@@ -37,7 +37,7 @@ function tallytypes_register_postType__carousel() {
 		'has_archive'        => true,
 		'hierarchical'       => false,
 		'menu_position'      => 101 ,
-		'menu_icon'			 => TALLYTYPES_URL.'assets/images/carousel-icon.png',
+		'menu_icon'			 => TALLYTYPES_URL.'assets/images/carousel-icon.svg',
 		'supports'           => array( 'title')
 	);
 
