@@ -24,10 +24,12 @@ function tallytypes_mb_field_sanitize($sanitize, $value){
 		'id' => true,
 	);
 	
-	if($sanitize == 'wp_kses'){
-       $value = $sanitize($value, $tags);
-	}else{
-		$value = $sanitize($value);
+	if(function_exists($sanitize)){
+		if($sanitize == 'wp_kses'){
+		   $value = $sanitize($value, $tags);
+		}else{
+			$value = $sanitize($value);
+		}
 	}
 	
 	return $value;
@@ -73,7 +75,7 @@ function tallytypes_mb_field_save($post_id, $arg){
 	extract(array_merge( tallytypes_mb_field_default_arguments(), $arg ));
 	
 	if ( isset( $_POST[$id] ) ){
-		update_post_meta( $post_id, $id, tallytypes_mb_field_sanitize($sanitize, $_POST[$id]) );
+		update_post_meta( $post_id, $id, $_POST[$id] );
 		
 	}
 }
@@ -100,7 +102,7 @@ function tallytypes_mb_field_color($arg){
 	if($name == ''){ $name = $id; }
 	
 	tallytypes_mb_field_before($id, $title, $class);
-		echo '<input type="text" name="'.$name.'" id="'.$id.'" value="'.tallytypes_mb_field_sanitize($sanitize, $value).' " class="tt_color">';	
+		echo '<input type="text" name="'.$name.'" id="'.$id.'" value="'.tallytypes_mb_field_sanitize($sanitize, $value).'" class="tt_color">';	
 	tallytypes_mb_field_after($des);
 }
 
@@ -165,7 +167,7 @@ function tallytypes_mb_field_group($arg){
 		if(is_array($items)){
 			echo '<div class="ttmbf_group" id="ttmbf_group_'.$id.'">';
 				if(is_array($value)){
-					foreach($value as $valu){
+					foreach($value as $key => $valu){
 						echo '<div class="ttmbf_group_item">';
 							echo '<div class="ttmbf_group_item_header">';
 								echo '<span class="ttmbf_group_item_title">'.($valu['title'] ? $valu['title'] : '--').'</span>';
@@ -176,15 +178,15 @@ function tallytypes_mb_field_group($arg){
 								
 								tallytypes_mb_field_text(array(
 									'id' => $id.'title',
-									'name' => $id.'title[]',
+									'name' => $id.'['.$key.'][title]',
 									'title' => "Title",
 									'value' => $valu['title'],
 									'class' => 'ttmbf_group_input_title',
 								));
 								foreach($items as $item){
 									$item['value'] = (isset($valu[$item['id']])) ? $valu[$item['id']] : '';
-									$item['name'] = $id.$item['id'].'[]';
-									$item['id'] = $id.$item['id'];
+									$item['name'] = $id.'['.$key.']['.$item['id'].']';
+									$item['id'] = $id.'-'.$key.'-'.$item['id'];
 									
 									$field_function_name = 'tallytypes_mb_field_'.$item['type'];
 									if(function_exists($field_function_name)){
@@ -211,14 +213,14 @@ function tallytypes_mb_field_group($arg){
 					echo '<div class="ttmbf_group_item_content">';
 						tallytypes_mb_field_text(array(
 							'id' => $id.'title',
-							'name' => $id.'title[]',
+							'name' => $id.'[__s__][title]',
 							'title' => "Title",
 							'value' => '',
 							'class' => 'ttmbf_group_input_title',
 						));
 						foreach($items as $item){
-							$item['name'] = $id.$item['id'].'[]';
-							$item['id'] = $id.$item['id'];
+							$item['name'] = $id.'[__s__]['.$item['id'].']';
+							$item['id'] = $id.'-__s__-'.$item['id'];
 							
 							$field_function_name = 'tallytypes_mb_field_'.$item['type'];
 							if(function_exists($field_function_name)){
@@ -226,7 +228,7 @@ function tallytypes_mb_field_group($arg){
 							}
 						
 						}
-						echo '<input type="hidden" name="'.$id.'hidden[]" value="1">';
+						echo '<input type="hidden" name="'.$id.'[__s__][hidden]" value="1">';
 					echo '</div>';
 				echo '</div>';
 			echo '</div>';
@@ -235,17 +237,17 @@ function tallytypes_mb_field_group($arg){
 	?>
     <script type="text/javascript">
 		jQuery(document).ready(function($){
-			$(".ttmbf_group_sample :input").attr("disabled", true);
+			$(".ttmbf_group_sample *").attr("disabled", true);
 			
-			$('#ttmbf_add_new_group_<?php echo $id; ?>').click(function(){
+			$('#ttmbf_add_new_group_<?php echo $id; ?>').click(function(){			
 				
-				$('#ttmbf_group_sample_<?php echo $id; ?> .ttmbf_group_item').clone().appendTo("#ttmbf_group_temp_<?php echo $id; ?>");
-				$("#ttmbf_group_temp_<?php echo $id; ?> :input").attr("disabled", false);
-					
-				$('#ttmbf_group_temp_<?php echo $id; ?> .ttmbf_group_item').clone().appendTo("#ttmbf_group_<?php echo $id; ?>");
-				$('#ttmbf_group_temp_<?php echo $id; ?> .ttmbf_group_item').remove();
+				var ttmbf_section_count = $("#ttmbf_group_<?php echo $id; ?>").children().length+1;
+				var ttmbf_empty_section = $('#ttmbf_group_sample_<?php echo $id; ?> .ttmbf_group_item').prop('outerHTML');
+				var ttmbf_filter_empty_section = ttmbf_empty_section.replace(/__s__/gi, ttmbf_section_count);
+		
+				$("#ttmbf_group_<?php echo $id; ?>").append(ttmbf_filter_empty_section);
 				
-				//$('#ttmbf_group_sample_<?php echo $id; ?> .ttmbf_group_item').clone().appendTo("#ttmbf_group_<?php echo $id; ?>");
+				$("#ttmbf_group_<?php echo $id; ?> *").attr('disabled', false);
 				
 				return false;
 			});
@@ -275,30 +277,6 @@ function tallytypes_mb_field_group($arg){
     <?php
 }
 
-/*	Save group
---------------------------------------*/
-function tallytypes_mb_group_field_save($post_id, $arg){
-	extract(array_merge( tallytypes_mb_field_default_arguments(), $arg ));
-	
-	$new_data = array();
-	$count = count(  $_POST[$id.'hidden'] );
-	
-	for ( $i = 0; $i < $count; $i++ ) {
-		
-		$get_form_data = $_POST[$id.'title'];
-		$new_data[$i]['title'] = $get_form_data[$i];
-		
-		if(is_array($items)){
-			foreach($items as $item){
-				$get_form_data = $_POST[$id.$item['id']];
-				$new_data[$i][$item['id']] = $get_form_data[$i];
-			}
-		}
-	}
-
-	update_post_meta( $post_id, $id, $new_data );
-		
-}
 
 
 /*	Class of the metabox generator
@@ -382,11 +360,7 @@ class tallytypes_metabox{
 		$fields = $this->mb_fields;
 		if(is_array($fields)){
 			foreach($fields as $field){
-				if($field['type'] == 'group'){
-					tallytypes_mb_group_field_save($post_id, $field);
-				}else{
-					tallytypes_mb_field_save($post_id, $field);
-				}
+				tallytypes_mb_field_save($post_id, $field);
 			}
 		}
 	}
