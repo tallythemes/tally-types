@@ -10,7 +10,7 @@ Version: 2.0
 Author: TallyThemes
 Author URI: http://tallythemes.com/
 License: GPLv2 or later
-Text Domain: tally-theme-setup
+Text Domain: tally-types
 Prefix: tallytypes_
 */
 

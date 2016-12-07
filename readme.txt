@@ -2,8 +2,8 @@
 Contributors: tallythemes, sazzadh
 Tags: tallythemes, posttype, post type, services, vcard, testimonials, carousel
 Requires at least: 4.4
-Tested up to: 4.4.2
-Stable tag: 1.0
+Tested up to: 4.7
+Stable tag: 2.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -25,7 +25,7 @@ This plugin doesn't change how Custom Post Types are displayed in your theme. Yo
 
 == Frequently Asked Questions ==
 
-= What does Tally Types Setup do? =
+= What does Tally Types do? =
 It just register custom post types, taxonomies and metaboxes.
 
 = Will it work on any theme? =
@@ -36,6 +36,9 @@ If you are using our theme and it need's custom post type this plugin is for you
 
 
 == Changelog ==
+= 2.0 =
+- Added new Post type Grid and Slider
+- Added SVG icon for Admin acreen
 
 = 1.0 =
 - Initial release.
