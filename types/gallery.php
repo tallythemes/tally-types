@@ -108,6 +108,7 @@ $mb_fields[] = array(
 		array('title' => '6', 'value' => '6'),
 		array('title' => '7', 'value' => '7'),
 		array('title' => '8', 'value' => '8'),
+		array('title' => '9', 'value' => '9'),
 	),
 );
 $mb_fields[] = array(
