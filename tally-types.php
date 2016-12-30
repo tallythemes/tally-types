@@ -6,7 +6,7 @@
 Plugin Name: Tally Types
 Plugin URI: http://tallythemes.com/
 Description: Provide Custom Post Types and Metaboxes
-Version: 2.0
+Version: 3.0
 Author: TallyThemes
 Author URI: http://tallythemes.com/
 License: GPLv2 or later
@@ -39,13 +39,16 @@ if ( !function_exists( 'add_action' ) ) {
 
 define( 'TALLYTYPES_URL', plugin_dir_url( __FILE__ ) );
 define( 'TALLYTYPES_DRI', plugin_dir_path( __FILE__ ) );
+
 define( 'TALLYTYPES_OPTION_NAME', apply_filters('tallytypes_option_name', 'tallytypes_option') );
-define( 'TALLYTYPES_ENABLE_CAROUSEL', apply_filters('tallytypes_enable_carousel', true) );
-define( 'TALLYTYPES_ENABLE_SERVICES', apply_filters('tallytypes_enable_services', true) );
-define( 'TALLYTYPES_ENABLE_TESTIMONIALS', apply_filters('tallytypes_enable_testimonials', true) );
-define( 'TALLYTYPES_ENABLE_VCARD', apply_filters('tallytypes_enable_vcard', true) );
-define( 'TALLYTYPES_ENABLE_GRID', apply_filters('tallytypes_enable_grid', true) );
-define( 'TALLYTYPES_ENABLE_SLIDER', apply_filters('tallytypes_enable_slider', true) );
+
+define( 'TALLYTYPES_ENABLE_CAROUSEL', apply_filters('tallytypes_enable_carousel', false) );
+define( 'TALLYTYPES_ENABLE_SERVICES', apply_filters('tallytypes_enable_services', false) );
+define( 'TALLYTYPES_ENABLE_TESTIMONIALS', apply_filters('tallytypes_enable_testimonials', false) );
+define( 'TALLYTYPES_ENABLE_VCARD', apply_filters('tallytypes_enable_vcard', false) );
+define( 'TALLYTYPES_ENABLE_GRID', apply_filters('tallytypes_enable_grid', false) );
+define( 'TALLYTYPES_ENABLE_SLIDER', apply_filters('tallytypes_enable_slider', false) );
+define( 'TALLYTYPES_ENABLE_GALLERY', apply_filters('tallytypes_enable_gallery', false) );
 
 include('includes/metabox-helper.php');
 include('includes/script-loader.php');
@@ -59,6 +62,7 @@ $tallytypes_is_testimonials = (isset($tallytypes_options['testimonials'])) ? $ta
 $tallytypes_is_vcard = (isset($tallytypes_options['vcard'])) ? $tallytypes_options['vcard'] : TALLYTYPES_ENABLE_VCARD;
 $tallytypes_is_grid = (isset($tallytypes_options['grid'])) ? $tallytypes_options['grid'] : TALLYTYPES_ENABLE_GRID;
 $tallytypes_is_slider = (isset($tallytypes_options['slider'])) ? $tallytypes_options['slider'] : TALLYTYPES_ENABLE_SLIDER;
+$tallytypes_is_gallery = (isset($tallytypes_options['gallery'])) ? $tallytypes_options['gallery'] : TALLYTYPES_ENABLE_GALLERY;
 
 if($tallytypes_is_carousel == true){
 	include('types/carousel.php');
@@ -77,4 +81,7 @@ if($tallytypes_is_grid == true){
 }
 if($tallytypes_is_slider == true){
 	include('types/slider.php');
+}
+if($tallytypes_is_gallery == true){
+	include('types/gallery.php');
 }

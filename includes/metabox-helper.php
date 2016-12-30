@@ -278,6 +278,31 @@ function tallytypes_mb_field_group($arg){
 }
 
 
+/*	Image size Select
+--------------------------------------*/
+function tallytypes_mb_field_image_size_select($arg){
+	extract(array_merge( tallytypes_mb_field_default_arguments(), $arg ));
+	if($name == ''){ $name = $id; }
+	global $_wp_additional_image_sizes; 
+	
+	/* doing some data validation for Database output */
+	$value = tallytypes_mb_field_sanitize($sanitize, $value);
+
+	tallytypes_mb_field_before($id, $title, $class);
+		echo '<select name="'.$name.'" id="'.$id.'">';
+			echo '<option value="">--</option>';
+			echo '<option value="thumbnail" '.selected($value, 'thumbnail').'>thumbnail</option>';
+			echo '<option value="medium" '.selected($value, 'medium').'>medium</option>';
+			echo '<option value="large" '.selected($value, 'large').'>large</option>';
+			echo '<option value="full" '.selected($value, 'full').'>full</option>';
+			foreach ( $_wp_additional_image_sizes as $item_key => $item ) { 
+				echo '<option value="'.$item_key.'" '.selected($value, $item_key).'>'.$item_key.' ('.$item['width'].'x'.$item['height'].')</option>';		
+			}
+		echo '</select>';
+	tallytypes_mb_field_after($des);
+}
+
+
 
 /*	Class of the metabox generator
 --------------------------------------*/
@@ -334,19 +359,12 @@ class tallytypes_metabox{
 				if($saved_value != ''){
 					$field['value'] = $saved_value;
 				}
-				if($field['type'] == 'text'){
-					tallytypes_mb_field_text($field);
-				}elseif($field['type'] == 'textarea'){
-					tallytypes_mb_field_textarea($field);
-				}elseif($field['type'] == 'select'){
-					tallytypes_mb_field_select($field);
-				}elseif($field['type'] == 'image_upload'){
-					tallytypes_mb_field_image_upload($field);
-				}elseif($field['type'] == 'group'){
-					tallytypes_mb_field_group($field);
-				}elseif($field['type'] == 'color'){
-					tallytypes_mb_field_color($field);
+				
+				$field_function_name = 'tallytypes_mb_field_'.$field['type'];
+				if(function_exists($field_function_name)){
+					$field_function_name($field);
 				}
+				
 			}
 		}
 	}
