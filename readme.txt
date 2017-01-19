@@ -3,7 +3,7 @@ Contributors: tallythemes, sazzadh
 Tags: tallythemes, posttype, post type, services, vcard, testimonials, carousel
 Requires at least: 4.4
 Tested up to: 4.7
-Stable tag: 3.0
+Stable tag: 3.1
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
@@ -36,6 +36,9 @@ If you are using our theme and it need's custom post type this plugin is for you
 
 
 == Changelog ==
+= 3.1 =
+- FIXEDL the filter issue of TYPES from theme
+
 = 3.0 =
 - Added new Post type Gallery
 - Improve Metabox class

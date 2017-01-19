@@ -66,7 +66,7 @@ function tallytypes_settings_section_callback(  ) {
 function tallytypes_field_render_1(){ 
 	$id = 'carousel';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_CAROUSEL;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('carousel');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -76,7 +76,7 @@ function tallytypes_field_render_1(){
 function tallytypes_field_render_2(){ 
 	$id = 'services';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_SERVICES;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('services');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -86,7 +86,7 @@ function tallytypes_field_render_2(){
 function tallytypes_field_render_3(){ 
 	$id = 'testimonials';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_TESTIMONIALS;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('testimonials');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -96,7 +96,7 @@ function tallytypes_field_render_3(){
 function tallytypes_field_render_4(){ 
 	$id = 'vcard';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_VCARD;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('vcard');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -106,7 +106,7 @@ function tallytypes_field_render_4(){
 function tallytypes_field_render_5(){ 
 	$id = 'grid';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_GRID;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('grid');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -116,7 +116,7 @@ function tallytypes_field_render_5(){
 function tallytypes_field_render_6(){ 
 	$id = 'slider';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_SLIDER;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('slider');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
@@ -126,7 +126,7 @@ function tallytypes_field_render_6(){
 function tallytypes_field_render_7(){ 
 	$id = 'gallery';
 	$options = get_option( TALLYTYPES_OPTION_NAME );
-	$value = (isset($options[$id])) ? $options[$id] : TALLYTYPES_ENABLE_GALLERY;
+	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('gallery');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
 		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';

@@ -6,7 +6,7 @@
 Plugin Name: Tally Types
 Plugin URI: http://tallythemes.com/
 Description: Provide Custom Post Types and Metaboxes
-Version: 3.0
+Version: 3.1
 Author: TallyThemes
 Author URI: http://tallythemes.com/
 License: GPLv2 or later
@@ -42,46 +42,60 @@ define( 'TALLYTYPES_DRI', plugin_dir_path( __FILE__ ) );
 
 define( 'TALLYTYPES_OPTION_NAME', apply_filters('tallytypes_option_name', 'tallytypes_option') );
 
-define( 'TALLYTYPES_ENABLE_CAROUSEL', apply_filters('tallytypes_enable_carousel', false) );
-define( 'TALLYTYPES_ENABLE_SERVICES', apply_filters('tallytypes_enable_services', false) );
-define( 'TALLYTYPES_ENABLE_TESTIMONIALS', apply_filters('tallytypes_enable_testimonials', false) );
-define( 'TALLYTYPES_ENABLE_VCARD', apply_filters('tallytypes_enable_vcard', false) );
-define( 'TALLYTYPES_ENABLE_GRID', apply_filters('tallytypes_enable_grid', false) );
-define( 'TALLYTYPES_ENABLE_SLIDER', apply_filters('tallytypes_enable_slider', false) );
-define( 'TALLYTYPES_ENABLE_GALLERY', apply_filters('tallytypes_enable_gallery', false) );
+function tallytypes_options_std($name){
+	if($name == 'carousel'){
+		return apply_filters('tallytypes_enable_carousel', false);
+	}elseif($name == 'services'){
+		return apply_filters('tallytypes_enable_services', false);
+	}elseif($name == 'testimonials'){
+		return apply_filters('tallytypes_enable_testimonials', false);
+	}elseif($name == 'vcard'){
+		return apply_filters('tallytypes_enable_vcard', false);
+	}elseif($name == 'grid'){
+		return apply_filters('tallytypes_enable_grid', false);
+	}elseif($name == 'slider'){
+		return apply_filters('tallytypes_enable_slider', false);
+	}elseif($name == 'gallery'){
+		return apply_filters('tallytypes_enable_gallery', false);
+	}else{
+		return false;
+	}
+}
 
 include('includes/metabox-helper.php');
 include('includes/script-loader.php');
 include('includes/settings-page.php');
 
-$tallytypes_options = get_option( TALLYTYPES_OPTION_NAME );
+$tallytypes_std_data = array(
+	'carousel' => tallytypes_options_std('carousel'),
+	'services' => tallytypes_options_std('services'),
+	'testimonials' => tallytypes_options_std('testimonials'),
+	'vcard' => tallytypes_options_std('vcard'),
+	'grid' => tallytypes_options_std('grid'),
+	'slider' => tallytypes_options_std('slider'),
+	'gallery' => tallytypes_options_std('gallery'),
+);
 
-$tallytypes_is_carousel = (isset($tallytypes_options['carousel'])) ? $tallytypes_options['carousel'] : TALLYTYPES_ENABLE_CAROUSEL;
-$tallytypes_is_services = (isset($tallytypes_options['services'])) ? $tallytypes_options['services'] : TALLYTYPES_ENABLE_SERVICES;
-$tallytypes_is_testimonials = (isset($tallytypes_options['testimonials'])) ? $tallytypes_options['testimonials'] : TALLYTYPES_ENABLE_TESTIMONIALS;
-$tallytypes_is_vcard = (isset($tallytypes_options['vcard'])) ? $tallytypes_options['vcard'] : TALLYTYPES_ENABLE_VCARD;
-$tallytypes_is_grid = (isset($tallytypes_options['grid'])) ? $tallytypes_options['grid'] : TALLYTYPES_ENABLE_GRID;
-$tallytypes_is_slider = (isset($tallytypes_options['slider'])) ? $tallytypes_options['slider'] : TALLYTYPES_ENABLE_SLIDER;
-$tallytypes_is_gallery = (isset($tallytypes_options['gallery'])) ? $tallytypes_options['gallery'] : TALLYTYPES_ENABLE_GALLERY;
+$tallytypes_options = get_option( TALLYTYPES_OPTION_NAME, $tallytypes_std_data );
 
-if($tallytypes_is_carousel == true){
+if($tallytypes_options['carousel'] == true){
 	include('types/carousel.php');
 }
-if($tallytypes_is_services == true){
+if($tallytypes_options['services'] == true){
 	include('types/services.php');
 }
-if($tallytypes_is_testimonials == true){
+if($tallytypes_options['testimonials'] == true){
 	include('types/testimonials.php');
 }
-if($tallytypes_is_vcard == true){
+if($tallytypes_options['vcard'] == true){
 	include('types/vcard.php');
 }
-if($tallytypes_is_grid == true){
+if($tallytypes_options['grid'] == true){
 	include('types/grid.php');
 }
-if($tallytypes_is_slider == true){
+if($tallytypes_options['slider'] == true){
 	include('types/slider.php');
 }
-if($tallytypes_is_gallery == true){
+if($tallytypes_options['gallery'] == true){
 	include('types/gallery.php');
 }
