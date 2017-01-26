@@ -42,23 +42,38 @@ define( 'TALLYTYPES_DRI', plugin_dir_path( __FILE__ ) );
 
 define( 'TALLYTYPES_OPTION_NAME', apply_filters('tallytypes_option_name', 'tallytypes_option') );
 
+if(file_exists(get_stylesheet_directory().'/inc/tallytypes-config.php')){
+	include(get_stylesheet_directory().'/inc/tallytypes-config.php');
+}elseif(file_exists(get_template_directory().'/inc/tallytypes-config.php')){
+	include(get_template_directory().'/inc/tallytypes-config.php');
+}
+if(!defined('TALLYTYPES_IS_carousel')){ define('TALLYTYPES_IS_carousel', 'no'); }
+if(!defined('TALLYTYPES_IS_services')){ define('TALLYTYPES_IS_services', 'no'); }
+if(!defined('TALLYTYPES_IS_testimonials')){ define('TALLYTYPES_IS_testimonials', 'no'); }
+if(!defined('TALLYTYPES_IS_vcard')){ define('TALLYTYPES_IS_vcard', 'no'); }
+if(!defined('TALLYTYPES_IS_grid')){ define('TALLYTYPES_IS_grid', 'no'); }
+if(!defined('TALLYTYPES_IS_slider')){ define('TALLYTYPES_IS_slider', 'no'); }
+if(!defined('TALLYTYPES_IS_gallery')){ define('TALLYTYPES_IS_gallery', 'no'); }
+
+
 function tallytypes_options_std($name){
+		
 	if($name == 'carousel'){
-		return apply_filters('tallytypes_enable_carousel', false);
+		return TALLYTYPES_IS_carousel;
 	}elseif($name == 'services'){
-		return apply_filters('tallytypes_enable_services', false);
+		return TALLYTYPES_IS_services;
 	}elseif($name == 'testimonials'){
-		return apply_filters('tallytypes_enable_testimonials', false);
+		return TALLYTYPES_IS_testimonials;
 	}elseif($name == 'vcard'){
-		return apply_filters('tallytypes_enable_vcard', false);
+		return TALLYTYPES_IS_vcard;
 	}elseif($name == 'grid'){
-		return apply_filters('tallytypes_enable_grid', false);
+		return TALLYTYPES_IS_grid;
 	}elseif($name == 'slider'){
-		return apply_filters('tallytypes_enable_slider', false);
+		return TALLYTYPES_IS_slider;
 	}elseif($name == 'gallery'){
-		return apply_filters('tallytypes_enable_gallery', false);
+		return TALLYTYPES_IS_gallery;
 	}else{
-		return false;
+		return 'no';
 	}
 }
 
@@ -66,36 +81,35 @@ include('includes/metabox-helper.php');
 include('includes/script-loader.php');
 include('includes/settings-page.php');
 
-$tallytypes_std_data = array(
-	'carousel' => tallytypes_options_std('carousel'),
-	'services' => tallytypes_options_std('services'),
-	'testimonials' => tallytypes_options_std('testimonials'),
-	'vcard' => tallytypes_options_std('vcard'),
-	'grid' => tallytypes_options_std('grid'),
-	'slider' => tallytypes_options_std('slider'),
-	'gallery' => tallytypes_options_std('gallery'),
-);
+$tallytypes_options = get_option( TALLYTYPES_OPTION_NAME);
 
-$tallytypes_options = get_option( TALLYTYPES_OPTION_NAME, $tallytypes_std_data );
+$tallytypes_is_carousel = (isset($tallytypes_options['carousel'])) ? $tallytypes_options['carousel'] : tallytypes_options_std('gallery');
+$tallytypes_is_services = (isset($tallytypes_options['services'])) ? $tallytypes_options['services'] : tallytypes_options_std('services');
+$tallytypes_is_testimonials = (isset($tallytypes_options['testimonials'])) ? $tallytypes_options['testimonials'] : tallytypes_options_std('testimonials');
+$tallytypes_is_vcard = (isset($tallytypes_options['vcard'])) ? $tallytypes_options['vcard'] : tallytypes_options_std('vcard');
+$tallytypes_is_grid = (isset($tallytypes_options['grid'])) ? $tallytypes_options['grid'] : tallytypes_options_std('grid');
+$tallytypes_is_slider = (isset($tallytypes_options['slider'])) ? $tallytypes_options['slider'] : tallytypes_options_std('slider');
+$tallytypes_is_gallery = (isset($tallytypes_options['gallery'])) ? $tallytypes_options['gallery'] : tallytypes_options_std('gallery');
 
-if($tallytypes_options['carousel'] == true){
+if($tallytypes_is_carousel == 'yes'){
 	include('types/carousel.php');
 }
-if($tallytypes_options['services'] == true){
+if($tallytypes_is_services == 'yes'){
 	include('types/services.php');
 }
-if($tallytypes_options['testimonials'] == true){
+if($tallytypes_is_testimonials == 'yes'){
 	include('types/testimonials.php');
 }
-if($tallytypes_options['vcard'] == true){
+if($tallytypes_is_vcard == 'yes'){
 	include('types/vcard.php');
 }
-if($tallytypes_options['grid'] == true){
+if($tallytypes_is_grid == 'yes'){
 	include('types/grid.php');
 }
-if($tallytypes_options['slider'] == true){
+if($tallytypes_is_slider == 'yes'){
 	include('types/slider.php');
 }
-if($tallytypes_options['gallery'] == true){
+if($tallytypes_is_gallery == 'yes'){
 	include('types/gallery.php');
 }
+

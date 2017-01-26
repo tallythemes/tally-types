@@ -69,8 +69,8 @@ function tallytypes_field_render_1(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('carousel');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_2(){ 
@@ -79,8 +79,8 @@ function tallytypes_field_render_2(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('services');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_3(){ 
@@ -89,8 +89,8 @@ function tallytypes_field_render_3(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('testimonials');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_4(){ 
@@ -99,8 +99,8 @@ function tallytypes_field_render_4(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('vcard');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_5(){ 
@@ -109,8 +109,8 @@ function tallytypes_field_render_5(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('grid');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_6(){ 
@@ -119,8 +119,8 @@ function tallytypes_field_render_6(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('slider');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
 function tallytypes_field_render_7(){ 
@@ -129,7 +129,7 @@ function tallytypes_field_render_7(){
 	$value = (isset($options[$id])) ? $options[$id] : tallytypes_options_std('gallery');
 	$value = ($value == false) ? 0 : $value;
 	echo '<select name="'.TALLYTYPES_OPTION_NAME.'['.$id.']">';
-		echo '<option value="1" '.selected( $value, 1, false ).'>Yes</option>';
-		echo '<option value="0" '.selected( $value, 0, false ).'>No</option>';
+		echo '<option value="yes" '.selected( $value, 'yes', false ).'>Yes</option>';
+		echo '<option value="no" '.selected( $value, 'no', false ).'>No</option>';
 	echo '</select>';
 }
